@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: faker-extraction-test
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: openai>=1.42.0
+Requires-Dist: instructor>=1.4.0
+Requires-Dist: faker>=28.0.0

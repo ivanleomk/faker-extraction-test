@@ -1,0 +1,11 @@
+[project]
+name = "faker-extraction-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.42.0",
+    "instructor>=1.4.0",
+    "faker>=28.0.0",
+]

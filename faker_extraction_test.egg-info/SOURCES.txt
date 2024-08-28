@@ -1,0 +1,8 @@
+README.md
+generate_faker_profiles.py
+pyproject.toml
+faker_extraction_test.egg-info/PKG-INFO
+faker_extraction_test.egg-info/SOURCES.txt
+faker_extraction_test.egg-info/dependency_links.txt
+faker_extraction_test.egg-info/requires.txt
+faker_extraction_test.egg-info/top_level.txt
