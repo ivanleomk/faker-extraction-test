@@ -1,1 +1,1 @@
-generate_faker_profiles
+data

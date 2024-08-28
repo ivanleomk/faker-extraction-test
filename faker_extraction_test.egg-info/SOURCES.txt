@@ -1,5 +1,4 @@
 README.md
-generate_faker_profiles.py
 pyproject.toml
 faker_extraction_test.egg-info/PKG-INFO
 faker_extraction_test.egg-info/SOURCES.txt

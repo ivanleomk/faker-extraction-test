@@ -8,7 +8,8 @@ from tqdm.asyncio import tqdm_asyncio as asyncio
 from asyncio import run, Semaphore
 import random
 from collections import defaultdict
-
+from textwrap import dedent
+from jinja2 import Template
 
 client = instructor.from_openai(openai.AsyncOpenAI())
 
@@ -52,13 +53,35 @@ async def main():
     for uuid,stint in stints:
         profiles_uuid_to_stints[uuid].append(stint)
     
-    with open("./data/resumes.jsonl", "w") as f:
-        for profile_uuid in profiles_uuid_to_stints:
+    for profile_uuid in profiles_uuid_to_stints:
+        with open(f"./data/resumes/{profile_uuid}.txt", "w+") as f:
+            
+
+            # Create a simple resume template
+            resume_template = Template(dedent("""
+            Resume for {{ profile.uuid }}
+
+            {% for stint in profile.stints %}
+            {{ stint.start_date.strftime('%Y-%m-%d') }} to {{ stint.end_date.strftime('%Y-%m-%d') }}
+            {{ stint.company }} - {{ stint.seniority_level.capitalize() }} ({{ stint.industry.capitalize() }})
+            Achievements:
+            {% for achievement in stint.achievements %}
+            - {{ achievement }}
+            {% endfor %}
+            {% endfor %}
+            """))
+
             profile = Profile(
                 uuid = profile_uuid,
                 stints = profiles_uuid_to_stints[profile_uuid]
             )
-            f.write(profile.model_dump_json() + "\n")
+            
+            # Render the resume using the template
+            rendered_resume = resume_template.render(profile=profile)
+
+            f.write(rendered_resume)
+                
+    
 
 if __name__ == "__main__":
     run(main())
